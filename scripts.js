@@ -24,7 +24,13 @@ function toggleInputs() {
 
 // Resetea el formulario y los resultados al cambiar el tipo de anualidad
 function resetForm() {
-    document.getElementById('formulario').reset();
+    // Resetear solo los valores de los inputs, no el formulario completo
+    document.getElementById('R').value = '';
+    document.getElementById('i').value = '';
+    document.getElementById('n').value = '';
+    document.getElementById('F').value = '';
+    document.getElementById('P').value = '';
+    
     document.getElementById('resultado').classList.add('hidden');
     toggleInputs();
 }
@@ -38,13 +44,13 @@ window.onload = toggleInputs;
 
 // Factor de Valor Futuro (FVA): [((1+i)^n - 1) / i]
 function factorFV(i, n) {
-    if (i === 0) return n; // Caso especial para i=0
+    if (i === 0) return n; // Caso especial para i=0 (interés simple)
     return (Math.pow(1 + i, n) - 1) / i;
 }
 
 // Factor de Valor Actual (PVA): [(1 - (1+i)^-n) / i]
 function factorPV(i, n) {
-    if (i === 0) return n; // Caso especial para i=0
+    if (i === 0) return n; // Caso especial para i=0 (interés simple)
     return (1 - Math.pow(1 + i, -n)) / i;
 }
 
@@ -52,10 +58,9 @@ function calcularAnualidad() {
     const tipoAnualidad = document.getElementById('tipoAnualidad').value;
     const varCalc = document.getElementById('variableACalcular').value;
     
-    // Ocultar resultado al inicio del cálculo
     document.getElementById('resultado').classList.add('hidden');
     
-    // Recolección de datos (solo los visibles)
+    // Recolección de datos
     let R = parseFloat(document.getElementById('R').value || 0);
     let i = parseFloat(document.getElementById('i').value || 0);
     let n = parseInt(document.getElementById('n').value || 0);
@@ -67,11 +72,10 @@ function calcularAnualidad() {
 
     // Validaciones básicas
     if (i < 0 || n <= 0) {
-        mostrarResultado("⚠️ Error: La tasa (i) debe ser positiva y el número de periodos (n) debe ser mayor que cero.", false);
+        mostrarResultado("⚠️ Error: La tasa (i) debe ser positiva o cero y el número de periodos (n) debe ser mayor que cero.", false);
         return;
     }
     
-    // Determinar qué variable calcular
     try {
         if (varCalc === 'F') {
             nombreVar = 'Monto (F)';
@@ -102,35 +106,35 @@ function calcularAnualidad() {
         } else if (varCalc === 'n') {
             nombreVar = 'Número de Períodos (n)';
             
-            // Ajustar P/F y R para la fórmula de vencida si es anticipada
             let R_calc = R;
             let P_calc = P;
             let F_calc = F;
 
             if (tipoAnualidad === 'anticipada') {
-                // Usar R_vencida = R_anticipada * (1+i)
+                // Para usar la fórmula logarítmica de la vencida, ajustamos R
                 R_calc = R * (1 + i);
             }
             
             if (P > 0 && F === 0) { // Calcular n dada P
                 let arg_log = 1 - (P_calc * i) / R_calc;
-                if (arg_log <= 0) throw new Error("Argumento logarítmico inválido. Revise sus valores P, R, i.");
+                if (arg_log <= 0 || R_calc <= 0) throw new Error("Argumento logarítmico inválido o Renta nula. Revise sus valores.");
                 resultado = -Math.log(arg_log) / Math.log(1 + i);
             } else if (F > 0 && P === 0) { // Calcular n dada F
                 let arg_log = 1 + (F_calc * i) / R_calc;
-                if (arg_log <= 0) throw new Error("Argumento logarítmico inválido. Revise sus valores F, R, i.");
+                if (arg_log <= 0 || R_calc <= 0) throw new Error("Argumento logarítmico inválido o Renta nula. Revise sus valores.");
                 resultado = Math.log(arg_log) / Math.log(1 + i);
             } else {
                 mostrarResultado("⚠️ Error: Para calcular 'n', ingrese solo el Monto (F) O solo el Valor Actual (P).", false);
                 return;
             }
-            // Para 'n', el resultado es un número entero de pagos, redondeamos
+            // Para 'n', el resultado es el número entero de pagos, redondeamos hacia arriba (techo)
             resultado = Math.ceil(resultado);
         }
 
         // Mostrar el resultado final
         if (resultado !== null && !isNaN(resultado)) {
-            let resultadoFormateado = resultado.toFixed(varCalc === 'n' ? 0 : 4);
+            let decimales = (varCalc === 'n' ? 0 : 4);
+            let resultadoFormateado = resultado.toFixed(decimales);
             mostrarResultado(`El ${nombreVar} es: ${resultadoFormateado}`, true);
         } else {
             mostrarResultado("⚠️ Error: No se pudo realizar el cálculo. Revise sus entradas.", false);
