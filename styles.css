@@ -1,0 +1,144 @@
+/* Estilos Generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6; /* Fondo gris claro suave */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Contenedor Principal */
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra elegante */
+}
+
+/* Títulos */
+h1 {
+    color: #007bff; /* Azul primario */
+    text-align: center;
+    margin-bottom: 20px;
+}
+h2 {
+    color: #34495e;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+/* Tarjetas (Cards) */
+.card {
+    padding: 20px;
+    margin-top: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+/* Grupos de Selección */
+.selection-group {
+    margin-bottom: 15px;
+}
+.selection-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+select {
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    appearance: none; /* Ocultar estilo nativo del select */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%20177.1L147.4%2037.6c-3.1-3.1-8.1-3.1-11.2%200l-140%20140c-3.1%203.1-3.1%208.1%200%2011.2l22.4%2022.4c3.1%203.1%208.1%203.1%2011.2%200l105.7-105.7c3.1-3.1%208.1-3.1%2011.2%200l105.7%20105.7c3.1%203.1%208.1%203.1%2011.2%200l22.4-22.4c3.1-3.1%203.1-8.1%200-11.2z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px;
+}
+
+/* Inputs y Grid */
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.input-item label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.input-item input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Asegura que el padding no cambie el ancho total */
+}
+.input-item small {
+    display: block;
+    margin-top: 5px;
+    color: #777;
+    font-size: 0.8em;
+}
+
+/* Botón */
+button {
+    background-color: #28a745; /* Verde para la acción principal */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #218838;
+}
+
+/* Caja de Resultados */
+.result-box {
+    background-color: #e9f7ef; /* Fondo verde muy claro */
+    border-left: 5px solid #28a745;
+}
+#resultadoTexto {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+}
+
+/* Utilidad */
+.hidden {
+    display: none !important;
+}
+
+/* Documentación */
+.documentation {
+    text-align: center;
+    margin-top: 20px;
+}
+.documentation a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+.documentation a:hover {
+    text-decoration: underline;
+}
+.documentation-section {
+    margin-top: 40px;
+    border-top: 2px dashed #ccc;
+    padding-top: 20px;
+}
