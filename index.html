@@ -47,3 +47,141 @@
                     <label for="n">No. de Períodos (n)</label>
                     <input type="number" id="n" step="1" required>
                 </div>
+                <div class="input-item hidden" id="inputF">
+                    <label for="F">Monto (F)</label>
+                    <input type="number" id="F" step="any">
+                    <small>Necesario para calcular R o n.</small>
+                </div>
+                <div class="input-item hidden" id="inputP">
+                    <label for="P">Valor Actual (P)</label>
+                    <input type="number" id="P" step="any">
+                    <small>Necesario para calcular R o n.</small>
+                </div>
+            </div>
+            <button onclick="calcularAnualidad()">Calcular</button>
+        </div>
+        
+        <div id="resultado" class="card result-box hidden">
+            <h2>Resultado</h2>
+            <p id="resultadoTexto"></p>
+        </div>
+        
+        <div class="documentation">
+            <a href="#glosario">Glosario de Términos</a> | 
+            <a href="#formulas">Tabla de Fórmulas</a> |
+            <a href="#mapa-conceptual">Mapa Conceptual</a>
+        </div>
+    </div>
+    
+    <div class="container documentation-section">
+        
+        <h2 id="instrucciones">📝 Instrucciones de Uso</h2>
+        <ul>
+            <li>**Paso 1:** Seleccione el **Tipo de Anualidad** (Vencida o Anticipada).</li>
+            <li>**Paso 2:** Seleccione la **Variable a Calcular** (F, P, R, o n).</li>
+            <li>**Paso 3:** Ingrese los valores de las variables restantes. Los campos necesarios aparecerán automáticamente.</li>
+            <li>**Paso 4:** Haga clic en **Calcular**. El resultado aparecerá en la caja superior.</li>
+            <li>**Nota Importante:** La **Tasa (i)** debe ser ingresada en **formato decimal por período** (ej: 12% anual capitalizable mensualmente = 0.01).</li>
+        </ul>
+
+        <h2 id="glosario">📚 Glosario de Términos</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Término</th>
+                    <th>Símbolo</th>
+                    <th>Definición</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**Renta/Pago**</td>
+                    <td>R</td>
+                    <td>La cantidad de dinero fija que se paga o se recibe periódicamente.</td>
+                </tr>
+                <tr>
+                    <td>**Tasa de Interés por Período**</td>
+                    <td>i</td>
+                    <td>La tasa de interés aplicada en cada período de pago (debe estar en formato decimal, $i = tasa/frecuencia$).</td>
+                </tr>
+                <tr>
+                    <td>**Número de Períodos**</td>
+                    <td>n</td>
+                    <td>La cantidad total de pagos o rentas a realizar durante la anualidad.</td>
+                </tr>
+                <tr>
+                    <td>**Valor Actual (Capital)**</td>
+                    <td>P</td>
+                    <td>El valor total de la anualidad traído al presente.</td>
+                </tr>
+                <tr>
+                    <td>**Monto (Valor Futuro)**</td>
+                    <td>F</td>
+                    <td>El valor total de la anualidad acumulado al final de todos los períodos.</td>
+                </tr>
+                <tr>
+                    <td>**Anualidad Simple**</td>
+                    <td></td>
+                    <td>La frecuencia de los pagos coincide con la frecuencia de capitalización.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="formulas">📈 Tabla de Fórmulas Principales (Anualidades Simples)</h2>
+        <p>Fórmulas base utilizadas para los cálculos de $F$ y $P$ en esta herramienta. Las fórmulas para $R$ y $n$ se obtienen mediante despeje algebraico.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Variable a Calcular</th>
+                    <th>Anualidad Vencida (Ordinaria)</th>
+                    <th>Anualidad Anticipada</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monto ($F$)</td>
+                    <td>$$F = R \left[ \frac{(1+i)^n - 1}{i} \right]$$</td>
+                    <td>$$F = R \left[ \frac{(1+i)^n - 1}{i} \right] (1+i)$$</td>
+                </tr>
+                <tr>
+                    <td>Valor Actual ($P$)</td>
+                    <td>$$P = R \left[ \frac{1 - (1+i)^{-n}}{i} \right]$$</td>
+                    <td>$$P = R \left[ \frac{1 - (1+i)^{-n}}{i} \right] (1+i)$$</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="mapa-conceptual">🗺️ Mapa Conceptual: Definición y Clasificación</h2>
+        
+        <div class="map-section">
+            <p>Una **Anualidad** es una serie de pagos o depósitos iguales y periódicos.</p>
+
+            <h3 class="subsection-title">1. Clasificación por el Momento del Pago</h3>
+            <ul>
+                <li>**Anualidades Vencidas (Ordinarias):** El pago se efectúa al **final** de cada período.</li>
+                <li>**Anualidades Anticipadas:** El pago se efectúa al **inicio** de cada período.</li>
+            </ul>
+
+            <h3 class="subsection-title">2. Clasificación por la Relación entre Frecuencias</h3>
+            <ul>
+                <li>**Anualidades Simples:** La frecuencia de los pagos **coincide** con la frecuencia de la capitalización de intereses (ej: pago mensual, interés capitalizado mensualmente).</li>
+                <li>**Anualidades Generales:** La frecuencia de los pagos **no coincide** con la frecuencia de la capitalización (ej: pago trimestral, interés capitalizado semestralmente).</li>
+            </ul>
+            
+             <h3 class="subsection-title">3. Otros Conceptos de Clasificación</h3>
+            <ul>
+                <li>**Ciertas:** Las fechas de inicio y fin están previamente estipuladas.</li>
+                <li>**Contingentes:** El inicio o fin dependen de un evento incierto (ej: la vida de una persona).</li>
+                <li>**Diferidas:** La serie de pagos comienza algún tiempo después de formalizada la operación.</li>
+                <li>**Inmediatas:** La serie de pagos comienza en el primer período.</li>
+            </ul>
+            
+        </div>
+        
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
