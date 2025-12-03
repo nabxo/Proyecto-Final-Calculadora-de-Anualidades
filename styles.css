@@ -65,7 +65,7 @@ select {
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #fff;
-    appearance: none; /* Ocultar estilo nativo del select */
+    appearance: none; 
     /* Icono de flecha SVG en la derecha */
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%20177.1L147.4%2037.6c-3.1-3.1-8.1-3.1-11.2%200l-140%20140c-3.1%203.1-3.1%208.1%200%2011.2l22.4%2022.4c3.1%203.1%208.1%203.1%2011.2%200l105.7-105.7c3.1-3.1%208.1-3.1%2011.2%200l105.7%20105.7c3.1%203.1%208.1%203.1%2011.2%200l22.4-22.4c3.1-3.1%203.1-8.1%200-11.2z%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
@@ -90,7 +90,7 @@ select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Asegura que el padding no cambie el ancho total */
+    box-sizing: border-box; 
 }
 .input-item small {
     display: block;
@@ -101,7 +101,7 @@ select {
 
 /* Botón */
 button {
-    background-color: #28a745; /* Verde para la acción principal */
+    background-color: #28a745; 
     color: white;
     padding: 12px 20px;
     border: none;
@@ -120,7 +120,6 @@ button:active {
 
 /* Caja de Resultados */
 .result-box {
-    /* Estilos base, el color específico se define en JS para éxito/error */
     border-left: 5px solid; 
 }
 #resultadoTexto {
@@ -173,7 +172,7 @@ button:active {
     font-size: 0.9em;
 }
 .documentation-section th {
-    background-color: #e6f0ff; /* Azul claro */
+    background-color: #e6f0ff; 
     color: #34495e;
     font-weight: bold;
 }
