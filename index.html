@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Anualidades Simples</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Calculadora de Anualidades Simples</h1>
+        <p>Seleccione el tipo de anualidad y la variable que desea calcular.</p>
+
+        <div class="selection-group">
+            <label for="tipoAnualidad">Tipo de Anualidad:</label>
+            <select id="tipoAnualidad" onchange="resetForm()">
+                <option value="vencida">Vencida (Ordinaria)</option>
+                <option value="anticipada">Anticipada</option>
+            </select>
+        </div>
+
+        <div class="selection-group">
+            <label for="variableACalcular">Calcular:</label>
+            <select id="variableACalcular" onchange="toggleInputs()">
+                <option value="F">Monto (F)</option>
+                <option value="P">Valor Actual (P)</option>
+                <option value="R">Renta (R)</option>
+                <option value="n">Número de Períodos (n)</option>
+            </select>
+        </div>
+
+        <div id="formulario" class="card">
+            <h2>Ingreso de Datos</h2>
+            <div class="input-grid">
+                <div class="input-item" id="inputR">
+                    <label for="R">Renta (R)</label>
+                    <input type="number" id="R" step="any" required>
+                </div>
+                <div class="input-item" id="inputi">
+                    <label for="i">Tasa por Periodo (i) - decimal</label>
+                    <input type="number" id="i" step="0.0001" required>
+                    <small>Ej: 1% mensual se ingresa como 0.01</small>
+                </div>
+                <div class="input-item" id="inputn">
+                    <label for="n">No. de Períodos (n)</label>
+                    <input type="number" id="n" step="1" required>
+                </div>
+                <div class="input-item hidden" id="inputF">
+                    <label for="F">Monto (F)</label>
+                    <input type="number" id="F" step="any">
+                </div>
+                <div class="input-item hidden" id="inputP">
+                    <label for="P">Valor Actual (P)</label>
+                    <input type="number" id="P" step="any">
+                </div>
+            </div>
+            <button onclick="calcularAnualidad()">Calcular</button>
+        </div>
+        
+        <div id="resultado" class="card result-box hidden">
+            <h2>Resultado</h2>
+            <p id="resultadoTexto"></p>
+        </div>
+        
+        <div class="documentation">
+            <a href="#glosario">Glosario de Términos</a> | 
+            <a href="#formulas">Tabla de Fórmulas</a>
+        </div>
+    </div>
+    
+    <div class="container documentation-section">
+        <h2 id="glosario">📚 Glosario de Términos</h2>
+        <h2 id="formulas">📝 Tabla de Fórmulas</h2>
+        </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
